@@ -53,6 +53,12 @@ foreach ($sequence in $sequences)
 
         # Delete old EXR folder
         Remove-Item $exrFolderPath
+
+        # Rename shot folder for new trigram
+        $shotSplit = $shot.Name -split "_"
+        $shotSplit[0] = $newTrigram
+        $newShotName = $shotSplit -join "_"
+        Rename-Item $shot.FullName $newShotName
     }
 
     # Rename sequence folder for new trigram
